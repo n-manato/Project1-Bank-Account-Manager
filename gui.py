@@ -27,11 +27,12 @@ from storage import load_accounts, load_transactions, save_accounts, save_transa
 class BankApp(QMainWindow):
     """Main GUI window for the Bank Account Manager."""
 
-    def __init__(self) -> None:
+    def __init__(self, username: str = "") -> None:
         """Initialize the main window and all UI components."""
         super().__init__()
         self.bank: Bank = Bank()
         self.selected_account_name: str = ""
+        self.current_username: str = username
 
         self.setWindowTitle("Bank Account Manager")
         self.resize(1100, 700)
@@ -48,6 +49,9 @@ class BankApp(QMainWindow):
         title_label.setStyleSheet("font-size: 24px; font-weight: bold;")
         title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
+        self.user_label = QLabel(f"Logged in as: {self.current_username}")
+        self.user_label.setStyleSheet("font-size: 14px;")
+
         self.selected_label = QLabel("Selected Account: None")
         self.selected_label.setStyleSheet("font-size: 14px; font-weight: bold;")
 
@@ -56,6 +60,7 @@ class BankApp(QMainWindow):
 
         header_layout = QVBoxLayout()
         header_layout.addWidget(title_label)
+        header_layout.addWidget(self.user_label)
         header_layout.addWidget(self.selected_label)
         header_layout.addWidget(self.total_label)
 

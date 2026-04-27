@@ -19,6 +19,8 @@ The program allows users to create and manage multiple bank accounts through a g
 - Input validation
 - Exception handling
 - Object-oriented design with inheritance
+- User registration and login
+- Password hashing with salt
 
 ## Account Types
 
@@ -50,6 +52,12 @@ It allows withdrawals, and after a certain number of withdrawals, a fee may be c
 - `storage.py`  
   Handles CSV saving and loading.
 
+- `auth.py`  
+  Handles user registration, password hashing, and login checking.
+
+- `login.py`  
+  Contains the PyQt6 login and register dialog.
+
 ## Concepts Used
 This project uses the following programming concepts:
 - Classes and objects
@@ -70,3 +78,23 @@ Install PyQt6 before running the program:
 
 ```bash
 pip install PyQt6
+
+## Login Feature
+The program now starts with a login window.
+
+Users can:
+- Register a new username and password
+- Log in with an existing account
+- Open the bank manager only after a successful login
+
+User data is saved in `users.csv`.  
+Passwords are not saved as plain text. The program saves a salted SHA-256 password hash.
+
+## How to Run
+
+```bash
+python main.py
+```
+
+First, click **Register** to create a user.  
+Then click **Login** to open the main bank manager window.
